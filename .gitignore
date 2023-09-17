@@ -1,0 +1,4 @@
+*.mpf
+*.dbg
+*.wlf
+work/**
