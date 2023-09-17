@@ -24,9 +24,7 @@ module post_proc (
     input   reg     p,
                     cin,
                     g,
-    output  wire    sum,
-                    cout 
+    output  wire    gn
 );
-    assign cout = g;
-    assign sum = p ^ cin;
+    assign gn = g | (p & cin);
 endmodule

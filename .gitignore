@@ -4,3 +4,6 @@
 work/**
 *.do
 *.txt
+*.mti
+.vscode/**
+*.vstf
