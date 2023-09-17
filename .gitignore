@@ -2,3 +2,5 @@
 *.dbg
 *.wlf
 work/**
+*.do
+*.txt
