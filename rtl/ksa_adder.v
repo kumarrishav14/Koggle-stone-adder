@@ -1,16 +1,14 @@
 module ksa_adder #(
     parameter WIDTH=8
 ) (
-    input   reg [7:0]   a,
+    input   reg [WIDTH-1:0]   a,
                         b,
             reg         cin,
-    output  wire [7:0]  sum,
-            wire        cout
-
-    
+    output  wire [WIDTH-1:0]  sum,
+            wire        cout 
 );
 
-    wire [7:0] p_pp, g_pp, p_foc, g_foc, gn1;
+    wire [WIDTH-1:0] p_pp, g_pp, p_foc, g_foc, gn1;
     pre_proc_block#(.WIDTH(WIDTH)) u_pp_block0 (
         .a(a), 
         .b(b), 
