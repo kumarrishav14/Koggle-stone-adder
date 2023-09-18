@@ -1,0 +1,9 @@
+*.mpf
+*.dbg
+*.wlf
+work/**
+*.do
+*.txt
+*.mti
+.vscode/**
+*.vstf
