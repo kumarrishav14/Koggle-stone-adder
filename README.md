@@ -6,21 +6,21 @@ Design and TB for configurable width **Kogge-Stone** adder.
 
 ### RTL
 
-All the RTL file is present in `rtl/` directory. By default the RTL is present for 32-bit data, but can be easily re-configured for any other data widths.
+All the RTL file is present in `rtl/` directory. By default, the RTL is present for 32-bit data but can be easily re-configured for any other data widths.
 
-FOC is created using a python script as there are lot of repetitive code. To create a FOC for a particular script use below command:
+FOC is created using a Python script as there is a lot of repetitive code. To create an FOC for a particular script use the below command:
 
 ```shell
 python3 rtl/gen_foc.py <width>
 ```
 
-A example `foc.v` file for 32-bit data width is provided in `rtl/` directory.
+An example `foc.v` file for 32-bit data width is provided in `rtl/` directory.
 
 ### Test Bench
 
-RTL data width can be reconfigured using `WIDTH` paramter in TB. Test bench is a self checker and it will generate `NUM_PKT` packets and check the results.
+RTL and TB data width can be reconfigured using `WIDTH` parameter in `simple_tb.sv` file. The test bench is a self-checker that generates `NUM_PKT` packets and checks the results. `NUM_PKT` is a parameter and can be configured in the `simple_tv.sv` file.
 
-> If data widths other than 32-bit is needed, then gen_foc.py script should be run before starting TB.
+> If data width other than 32-bit is needed, then `gen_foc.py` script should be run before starting TB.
 
 ### Delay Simulation
 
@@ -28,7 +28,7 @@ Delays can be simulated in the code using `GATE_DELAY` define which needs to be 
 
 ## More on Kogge-Stone adder
 
-Kogge-Stone adder is considered to be one of the most efficient adder and widely used in high-performance appilcation like FIR filter, HPCs, etc where data width is considerably high.
+Kogge-Stone adder is considered to be one of the most efficient adders and widely used in high-performance applications like FIR filters, HPCs, etc. where data width is considerably high.
 
 ### Design Principle
 
@@ -62,7 +62,7 @@ where $i > k > j$; $p,\ g$ is the output from previous stage.
 
 The carry look-ahead stage uses a tree-like structure to compute the group signals in logarithmic time. The Kogge-Stone adder uses a balanced tree with minimum fan-out, which reduces the delay but increases the area and wiring complexity.
 
-The last sub-stage of the carry look-ahead stage compute the carry bits using following logic:
+The last sub-stage of the carry look-ahead stage computes the carry bits using the following logic:
 
 $$
 C_i = G_i \text { OR } (P_i \text { AND } c_{i-1})
@@ -70,7 +70,7 @@ $$
 
 where $c_{i-1}$ is $c_{in}$ for 1st bit.
 
-#### Post processing stage
+#### Post-processing stage
 
 In the post-processing stage, the adder computes the sum bits by XORing the propagate signals with the corresponding carry signals. The sum bits are given by the following logic equation:
 
@@ -83,9 +83,9 @@ where $c_0$ ($c_{i-1}$ for 1st bit) is the carry-in bit.
 ### Advantage
 
 - Very fast as carry is generated in $O(\log_2 n)$ time, where $n$ is the number of bits.
-- Fan-out is minimum which also decreases the overall gate-delay.
+- Fan-out is minimal which also decreases the overall gate-delay.
 
 ### Disadvantage
 
-- Tree like strcuture increases the wire in design, thus routing becomes tough.
-- Overall number of cell required is also high increasing the area and power consumption.
+- Tree-like structure increases the wire in design, thus routing becomes tough.
+- Overall number of cells required is also high increasing the area and power consumption.
