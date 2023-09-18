@@ -2,7 +2,31 @@
 
 Design and TB for configurable width **Kogge-Stone** adder.
 
-## Introduction of Kogge-Stone adder
+## How to use
+
+### RTL
+
+All the RTL file is present in `rtl/` directory. By default the RTL is present for 32-bit data, but can be easily re-configured for any other data widths.
+
+FOC is created using a python script as there are lot of repetitive code. To create a FOC for a particular script use below command:
+
+```shell
+python3 rtl/gen_foc.py <width>
+```
+
+A example `foc.v` file for 32-bit data width is provided in `rtl/` directory.
+
+### Test Bench
+
+RTL data width can be reconfigured using `WIDTH` paramter in TB. Test bench is a self checker and it will generate `NUM_PKT` packets and check the results.
+
+> If data widths other than 32-bit is needed, then gen_foc.py script should be run before starting TB.
+
+### Delay Simulation
+
+Delays can be simulated in the code using `GATE_DELAY` define which needs to be passed with compile options.
+
+## More on Kogge-Stone adder
 
 Kogge-Stone adder is considered to be one of the most efficient adder and widely used in high-performance appilcation like FIR filter, HPCs, etc where data width is considerably high.
 
@@ -65,27 +89,3 @@ where $c_0$ ($c_{i-1}$ for 1st bit) is the carry-in bit.
 
 - Tree like strcuture increases the wire in design, thus routing becomes tough.
 - Overall number of cell required is also high increasing the area and power consumption.
-
-## How to use
-
-### RTL
-
-All the RTL file is present in `rtl/` directory. By default the RTL is present for 32-bit data, but can be easily re-configured for any other data widths.
-
-FOC is created using a python script as there are lot of repetitive code. To create a FOC for a particular script use below command:
-
-```shell
-python3 rtl/gen_foc.py <width>
-```
-
-A example `foc.v` file for 32-bit data width is provided in `rtl/` directory.
-
-### Test Bench
-
-RTL data width can be reconfigured using `WIDTH` paramter in TB. Test bench is a self checker and it will generate `NUM_PKT` packets and check the results.
-
-> If data widths other than 32-bit is needed, then gen_foc.py script should be run before starting TB.
-
-### Delay Simulation
-
-Delays can be simulated in the code using `GATE_DELAY` define which needs to be passed with compile options.
