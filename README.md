@@ -15,7 +15,10 @@ A Kogge-Stone adder is a type of fast adder that uses a parallel prefix network 
 In the pre-processing stage, the adder computes the generate and propagate signals for each pair of input bits. The generate signal indicates that a carry is generated at that position, while the propagate signal indicates that a carry is propagated from the previous position. These signals are given by the following logic equations:
 
 $$
-g_i = a_i \text { AND } b_i \\
+g_i = a_i \text { AND } b_i
+$$
+
+$$
 p_i = a_i \text { XOR } b_i
 $$
 
@@ -24,7 +27,10 @@ $$
 In this stage, the adder computes the group generate and propagate signals for each block of bits. The group generate signal indicates that a carry is generated within that block, while the group propagate signal indicates that a carry is propagated through that block. These signals are given by the following recursive logic equations:
 
 $$
-G_{i:j} = p_{i:k+1} \text { OR } (p_{i:k+1} \text { AND } g_{k:j}) \\
+G_{i:j} = p_{i:k+1} \text { OR } (p_{i:k+1} \text { AND } g_{k:j})
+$$
+
+$$
 P_{i:j} = p_{i:k+1} \text { AND } g_{k:j}
 $$
 
